@@ -1,5 +1,5 @@
-word1 = input('Enter the 1 word: ')
-word2 = input('Enter the 2 word: ')
+word1 = input('Enter the first word: ')
+word2 = input('Enter the second word: ')
 
 print("Now:", word1, word2)
 
