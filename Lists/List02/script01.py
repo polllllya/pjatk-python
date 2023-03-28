@@ -1,24 +1,24 @@
-name = input("Name: ")
-birthday = input("Birthday: ")
-email = input("Email: ")
-number = input("Number: ")
+"""
+Lista B - Lab3 - Zadanie 1
+"""
 
-print()
+# pobieranie danych od użytkownika
+imie = input("Podaj swoje imię: ")
+data_urodzenia = input("Podaj swoją datę urodzenia (w formacie RRRR-MM-DD): ")
+email = input("Podaj swój adres e-mail: ")
+numer_telefonu = input("Podaj swój numer telefonu: ")
 
-# List[we can only store one type of data, but we can modify it]
-myList = [name, birthday, email, number]
-print(myList)
+# zapisywanie danych w postaci listy, krotki i słownika
+dane_lista = [imie, data_urodzenia, email, numer_telefonu]
+dane_krotka = (imie, data_urodzenia, email, numer_telefonu)
+dane_slownik = {"imie": imie, "data_urodzenia": data_urodzenia, "email": email, "numer_telefonu": numer_telefonu}
 
-print()
+# wyświetlanie danych na ekranie
+print("Twoje dane w postaci listy:")
+print(dane_lista)
 
-# Tuple[we may store different types of data, but we cannot modify this data]
-myTuple = (name, birthday, email, int(number))
-print(myTuple)
+print("\nTwoje dane w postaci krotki:")
+print(dane_krotka)
 
-print()
-
-
-# Dictionary[ are used to store data values in key:value pairs]
-myDict = {"Name": name, "Birthday": birthday, "Email": email, "Number": number}
-print(myDict)
-print(myDict["Name"])
+print("\nTwoje dane w postaci słownika:")
+print(dane_slownik)

@@ -1,8 +1,13 @@
-size = int(input("Podaj rozmiar tabliczki mnożenia: "))
+"""
+Lista B - Lab3 - Zadanie 3
+"""
 
-for i in range(1, size + 1):
-    row = ""
-    for j in range(1, size + 1):
-        product = i * j
-        row += str(product).rjust(4) # dopasuj do 4 znaków i wypełnij spacjami z lewej strony
-    print(row)
+# pobieranie danych od użytkownika
+litery = input("Podaj duże litery alfabetu, oddzielone przecinkami: ").split(",")
+liczby = input("Podaj liczby od 1 do 10, oddzielone przecinkami: ").split(",")
+
+# tworzenie słownika
+slownik = {litery[i]: liczby[i] for i in range(len(litery))}
+
+# wyświetlanie słownika
+print(slownik)
