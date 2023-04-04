@@ -1,3 +1,7 @@
+"""
+Lista B - Lab4 - Zadanie 3
+"""
+
 import random
 
 # Kolekcja kategorii i słów do odgadnięcia
