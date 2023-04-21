@@ -1,18 +1,14 @@
-"""
-Metody Specjalne klas
-"""
-
-
-class Zwierz:
+class Produkt:
     """Pierwsza klasa"""
-    rodzaj = "zwierze"
-    zwierzeta = {}
+    rodzaj = "produkt"
+    kategorji = {}
 
-    def __init__(self, gatunek, wiek, predkosc):
-        self.gatunek = gatunek
-        self.wiek = wiek
-        self.max_predkosc = predkosc
-        if gatunek in Zwierz.zwierzeta:
+    def __init__(self, cena, nazwa, kategorja):
+        self.cena = cena
+        self.nazwa = nazwa
+        self.kategorja = kategorja
+
+        if kategorja in Produkt.produkty:
             Zwierz.zwierzeta[gatunek] += 1
         else:
             Zwierz.zwierzeta[gatunek] = 1
@@ -23,6 +19,13 @@ class Zwierz:
     def oblicz_odliglosc(self, czas):
         print(czas * self.max_predkosc)
 
+
+    def _sprawdz_stan_zdrowia(self):
+        if self.stan_drowia == 1:
+            return 1
+        else:
+            return 0
+
     @staticmethod
     def wypisz_zwierzenta():
         print(Zwierz.zwierzeta)
@@ -30,7 +33,3 @@ class Zwierz:
     # Nadpisanie zmiennej specjalnej
     def __str__(self):
         return self.gatunek + " ma " + str(self.wiek) + " lat i osiaga predkosc " + str(self.max_predkosc) + " km/h."
-
-
-a = Zwierz("lis", 5, 7)
-print(a)

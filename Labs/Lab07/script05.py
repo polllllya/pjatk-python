@@ -48,6 +48,6 @@ class Ptak(Zwierz):
 a = Ptak("pin",2,3,0,"otwarty")
 print(a)
 
-a.przenies()
+a.pprzenies()
 print(a.miejsce)
 
