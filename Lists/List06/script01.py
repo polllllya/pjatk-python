@@ -1,35 +1,51 @@
-class Produkt:
-    """Pierwsza klasa"""
-    rodzaj = "produkt"
-    kategorji = {}
+"""
+Napisz skrypt, który będzie działał jak prosta baza produktów spożywczych.
+Skrypt ma korzytać z klas.Zmodyfikuj kod z zadania wykonanego na jednych z poprzednich zajęć.
+"""
 
-    def __init__(self, cena, nazwa, kategorja):
+
+class Produkt:
+    kategorie = {"warzywo i owoce": [], "produkt mleczny": [], "mieso": []}
+
+    def __init__(self, nazwa, cena, kategorja):
         self.cena = cena
         self.nazwa = nazwa
         self.kategorja = kategorja
 
-        if kategorja in Produkt.produkty:
-            Zwierz.zwierzeta[gatunek] += 1
-        else:
-            Zwierz.zwierzeta[gatunek] = 1
+        if kategorja == "warzywo i owoce":
+            Produkt.kategorie["warzywo i owoce"].append(self)
+        if kategorja == "produkt mleczny":
+            Produkt.kategorie["produkt mleczny"].append(self)
+        if kategorja == "mieso":
+            Produkt.kategorie["mieso"].append(self)
 
-    def podaj_gatunek(self):
-        print("lis")
+    def oblicz_calkowity_koszt(self, ilosc):
+        print("Calkowity koszt:", self._oblicz_znizke() * ilosc)
 
-    def oblicz_odliglosc(self, czas):
-        print(czas * self.max_predkosc)
-
-
-    def _sprawdz_stan_zdrowia(self):
-        if self.stan_drowia == 1:
-            return 1
-        else:
-            return 0
+    def _oblicz_znizke(self):
+        return self.cena - (self.cena * 10 / 100)
 
     @staticmethod
-    def wypisz_zwierzenta():
-        print(Zwierz.zwierzeta)
+    def wypisz_produkt():
+        print("Produkty:")
+        for kategoria, produkty in Produkt.kategorie.items():
+            print(f"Kategoria: {kategoria}")
+            for produkt in produkty:
+                print(f"Nazwa: {produkt.nazwa}, Cena: {produkt.cena}")
+            print()
 
-    # Nadpisanie zmiennej specjalnej
+
     def __str__(self):
-        return self.gatunek + " ma " + str(self.wiek) + " lat i osiaga predkosc " + str(self.max_predkosc) + " km/h."
+        return f"{self.nazwa} kosztuje {self.cena} i należy do kategorii {self.kategorja}"
+
+
+p1 = Produkt("Mleko", 2.34, "produkt mleczny")
+p2 = Produkt("Kurczak", 8.32, "mieso")
+p3 = Produkt("Banan", 2.60, "warzywo i owoce")
+p4 = Produkt("Ziemniak", 0.30, "warzywo i owoce")
+p5 = Produkt("Smietana", 4.68, "produkt mleczny")
+
+Produkt.wypisz_produkt()
+
+p1.oblicz_calkowity_koszt(4)
+print(p2)
