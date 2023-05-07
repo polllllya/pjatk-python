@@ -1,17 +1,21 @@
+from Lists.List07.funkcje import oblicz_wiek
+
 class Osoba:
+
     def __init__(self, imie, nazwisko, plec, data_urodzenia):
         self.imie = imie
         self.nazwisko = nazwisko
         self.plec = plec
         self.data_urodzenia = data_urodzenia
+        self.wiek = oblicz_wiek(data_urodzenia)
     
     def wyswietl_info(self):
-        return {'Imię': self.imie, 'Nazwisko': self.nazwisko, 'Płeć': self.plec, 'Data urodzenia': self.data_urodzenia}
+        return {'Imię': self.imie, 'Nazwisko': self.nazwisko, 'Płeć': self.plec, 'Data urodzenia': self.data_urodzenia,
+                'Wiek': self.wiek}
     
     @staticmethod
     def wyswietl_osoby(osoby):
         return [osoba.wyswietl_info() for osoba in osoby]
-
 
 class Gracz(Osoba):
     def __init__(self, imie, nazwisko, plec, data_urodzenia, nick, typ, email):

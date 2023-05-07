@@ -14,9 +14,9 @@ print(random.randint(1, 15))
 l = list(range(1, 10))
 
 print(random.choice(l))
+print(l)
 
 random.shuffle(l)
-print(l)
 
 print(random.random())  # od 0 do 1
 
