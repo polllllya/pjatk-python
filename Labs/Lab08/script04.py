@@ -4,5 +4,5 @@ Modułyy zewnętrne
 
 from PIL import Image
 
-obraz = Image.open("IMG_5256.JPG")
+obraz = Image.open("../Lab10/IMG_5256.JPG")
 obraz.show()
