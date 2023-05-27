@@ -23,5 +23,3 @@ for i in range(max_number):
     column2 = "#" if i < number2 else " "
     column3 = "$" if i < number3 else " "
     print("{:^5} {:^5} {:^5}".format(column1, column2, column3))
-
-

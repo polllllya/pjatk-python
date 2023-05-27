@@ -40,7 +40,6 @@ def gra_kolko_i_krzyzyk():
     while True:
         wyswietl_plansze()
 
-        # Pobranie ruchu od gracza
         ruch = input(f"Gracz {kolej}, podaj numer pola (1-9): ")
         while not ruch.isdigit() or int(ruch) not in range(1, 10) or plansza[int(ruch) - 1] != ' ':
             print("Nieprawidłowy ruch. Spróbuj jeszcze raz.")

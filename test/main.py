@@ -1,60 +1,72 @@
-import numpy as np
-import matplotlib.pyplot as plt
+import turtle
 
-# Stałe fizyczne
-G = 6.67430e-11  # Stała grawitacji
-m_earth = 5.972e24  # Masa Ziemi
-r_earth = 6.371e6  # Promień Ziemi
-q = 0.5  # Współczynnik oporu ośrodka
-dt = 1.0  # Czas kroku
 
-# Warunki początkowe
-n = 1000  # Liczba punktów
-x0 = np.zeros(n)
-y0 = np.zeros(n)
-vx0 = np.zeros(n)
-vy0 = np.zeros(n)
+def l_system_rules(rules):
+    rule_dict = {
+        'X': 'F+[[X]-X]-F[-FX]+X',  # P1 : X -> F+[[X]-X]-F[-FX]+X
+        'F': 'FF'  # P2: F -> FF
+    }
+    next_rule = ''
+    for character in rules:
+        next_rule += rule_dict.get(character, character)
 
-for i in range(n):
-    theta = np.random.uniform(0, 2*np.pi)
-    r = np.random.uniform(0, r_earth*2)
-    x0[i] = r * np.cos(theta)
-    y0[i] = r * np.sin(theta)
-    v0 = np.sqrt(G*m_earth/r)
-    vx0[i] = -v0 * np.sin(theta)
-    vy0[i] = v0 * np.cos(theta)
+    print(next_rule)
+    return next_rule
 
-# Funkcja obliczająca wypadkową siłę
-def force(x, y, vx, vy):
-    r = np.sqrt(x**2 + y**2)
-    F_gravity = -G * m_earth / r**2
-    Fx = F_gravity * x / r
-    Fy = F_gravity * y / r
-    Fx -= q * vx / m_earth
-    Fy -= q * vy / m_earth
-    return Fx, Fy
 
-# Symulacja ruchu
-x = np.zeros((n, 1))
-y = np.zeros((n, 1))
-vx = np.zeros((n, 1))
-vy = np.zeros((n, 1))
+def draw_turtle(rules):
+    stack = []
 
-x[0] = x0
-y[0] = y0
-vx[0] = vx0
-vy[0] = vy0
+    window = turtle.Screen()
+    window.bgcolor('black')
 
-for i in range(1, 10000):
-    Fx, Fy = force(x[i-1], y[i-1], vx[i-1], vy[i-1])
-    vx[i] = vx[i-1] + dt * Fx / m_earth
-    x[i] = x[i-1] + dt * vx[i]
-    vy[i] = vy[i-1] + dt * Fy / m_earth
-    y[i] = y[i-1] + dt * vy[i]
+    myturtle = turtle.Turtle()
+    myturtle.speed(3)
+    myturtle.shape('classic')
+    myturtle.shapesize(stretch_wid=0.5)
+    myturtle.penup()
+    myturtle.goto(-window.window_width() / 2 + window.window_height() / 2, -window.window_height() / 2)
+    myturtle.pendown()
+    myturtle.left(90)
 
-# Wykres trajektorii
-plt.plot(x, y)
-plt.xlabel('X')
-plt.ylabel('Y')
-plt.title('Trajektoria ruchu punktów z oporem ośrodka i siłą grawitacji')
-plt.show()
+    for character in rules:
+        myturtle.color('green')
+
+        if character == 'F':  # idź do przodu zostawiając ślad
+            myturtle.forward(15)
+
+        elif character == '+':
+            myturtle.right(25)  # oznaczają obrót o 25 (w prawo)
+
+        elif character == '-':
+            myturtle.left(25)  # oznaczają obrót o 25 (w lewo)
+
+        elif character == '[':
+            angle = myturtle.heading()
+            pos = [myturtle.xcor(), myturtle.ycor()]
+
+            stack.append((angle, pos))  # odłóż wartości na stos
+
+        elif character == ']':
+            angle, pos = stack.pop()  # zdejmij ze stosu
+
+            myturtle.setheading(angle)
+            myturtle.penup()
+            myturtle.goto(pos[0], pos[1])
+            myturtle.pendown()
+
+        # elif character == 'X':  symbol pomocniczy, nie jest do rysowania
+        #     myturtle.forward(10)
+
+    window.exitonclick()
+
+
+def initialize():
+    n = int(input("n >> "))
+    rule = 'X'  # Słowo początkowe w=X
+    for _ in range(n):
+        rule = l_system_rules(rule)
+    draw_turtle(rule)
+
+
+initialize()
