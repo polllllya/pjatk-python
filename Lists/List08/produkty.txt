@@ -1,0 +1,5 @@
+Banan,2.6,warzywo i owoce
+Ziemniak,0.3,warzywo i owoce
+Mleko,2.34,produkt mleczny
+Smietana,4.68,produkt mleczny
+Kurczak,8.32,mieso
